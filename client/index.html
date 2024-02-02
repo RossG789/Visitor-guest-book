@@ -8,5 +8,19 @@
     <script type="module" src="./main.js" defer></script>
     <title>Biscuit's Cottages</title>
   </head>
-  <body></body>
+  <body>
+    <div class="nav-bar">
+      <h1>Biscuit's Cottage Guest Book</h1>
+      <form id="form">
+        <label for="fullname">Full Name</label>
+        <input id="fullname" type="text" name="fullName" />
+        <label for="todays-date">Date</label>
+        <input type="text" name="date" id="todays-date" />
+        <label for="visitor-message">Your Message</label>
+        <input type="text" id="visitor-message" name="message" />
+        <button type="submit">Post Message</button>
+      </form>
+    </div>
+    <div id="message-board"></div>
+  </body>
 </html>
