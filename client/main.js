@@ -1,7 +1,6 @@
 const form = document.getElementById("form");
 
 const messageBoard = document.getElementById("message-board");
-console.log(messageBoard);
 
 const defaultURL = "http://localhost:1111";
 
@@ -35,17 +34,17 @@ async function displayMessages() {
   let messages = await fetchMessages();
   messageBoard.innerHTML = "";
   messages.forEach((message) => {
-    let h4Name = document.createElement("h2");
+    let h2Name = document.createElement("h2");
     let pDate = document.createElement("p");
     let pMessage = document.createElement("p");
     let deletePost = document.createElement("p");
 
-    h4Name.textContent = message.fullName;
+    h2Name.textContent = message.name;
     pDate.textContent = message.date;
     pMessage.textContent = message.message;
     deletePost.textContent = "X";
 
-    messageBoard.appendChild(h4Name);
+    messageBoard.appendChild(h2Name);
     messageBoard.appendChild(pDate);
     messageBoard.appendChild(pMessage);
     messageBoard.appendChild(deletePost);
@@ -60,7 +59,7 @@ async function displayMessages() {
 displayMessages();
 
 async function handleDelete(id) {
-  const result = await fetch(`${defaultURL}/messages${id}`, {
+  const result = await fetch(`${defaultURL}/messages/${id}`, {
     method: "DELETE",
   });
   if (result.ok) {

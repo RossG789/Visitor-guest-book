@@ -32,7 +32,7 @@ app.get("/messages", (req, res) => {
 
 app.post("/messages", (req, res) => {
   try {
-    const name = req.body.fullName;
+    const name = req.body.name;
     const date = req.body.date;
     const userMessage = req.body.message;
 
@@ -60,7 +60,7 @@ app.delete("/messages/:id", (req, res) => {
 app.put("/messages/:id", (req, res) => {
   try {
     const id = req.params.id;
-    const name = req.body.fullName;
+    const name = req.body.name;
     const date = req.body.date;
     const userMessage = req.body.message;
 
