@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Caveat", cursive;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+#form {
+  display: flex;
+}
+
+.remove-post {
+  border: 2px solid black;
+  height: fit-content;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.remove-post:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+}
