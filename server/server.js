@@ -23,7 +23,14 @@ app.get("/messages", (req, res) => {
       return;
     }
 
+    // add variable for ordering before sql query
+    // eg let ordering = ASC
+
+    // if(req.query.sortby = latest
+    // req.query.sortbylatest/oldest
+
     let message = db.prepare(`SELECT * FROM messages`).all();
+
     res.status(200).json(message);
   } catch (err) {
     res.status(500).json(err);

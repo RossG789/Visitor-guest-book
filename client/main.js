@@ -38,6 +38,7 @@ async function displayMessages() {
     let pDate = document.createElement("p");
     let pMessage = document.createElement("p");
     let deletePost = document.createElement("p");
+    deletePost.setAttribute("class", "remove-post");
 
     h2Name.textContent = message.name;
     pDate.textContent = message.date;
