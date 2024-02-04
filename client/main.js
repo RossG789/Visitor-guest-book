@@ -2,7 +2,7 @@ const form = document.getElementById("form");
 
 const messageBoard = document.getElementById("message-board");
 
-const defaultURL = "http://localhost:1111";
+const defaultURL = "https://leaky-cauldron.onrender.com";
 
 const newestRadio = document.getElementById("newest");
 newestRadio.click();
