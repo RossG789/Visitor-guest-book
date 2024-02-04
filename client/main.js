@@ -4,6 +4,16 @@ const messageBoard = document.getElementById("message-board");
 
 const defaultURL = "http://localhost:1111";
 
+const newestRadio = document.getElementById("newest");
+newestRadio.click();
+
+// oldestRadio.addEventListener("click", (e) => {
+//   console.log(e);
+// });
+// newestRadio.addEventListener("click", (e) => {
+//   console.log(e);
+// });
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -24,16 +34,19 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-async function fetchMessages() {
-  const messages = await fetch(`${defaultURL}/messages`);
+async function fetchMessages(order) {
+  const messages = await fetch(`${defaultURL}/messages?sort=${order}`);
   let result = await messages.json();
   return result;
 }
 
-async function displayMessages() {
-  let messages = await fetchMessages();
+async function displayMessages(order = "newest") {
+  // console.log(order);
+  let messages = await fetchMessages(order);
   messageBoard.innerHTML = "";
   messages.forEach((message) => {
+    let borderDiv = document.createElement("div");
+    borderDiv.setAttribute("class", "message-field");
     let h2Name = document.createElement("h2");
     let pDate = document.createElement("p");
     let pMessage = document.createElement("p");
@@ -42,12 +55,14 @@ async function displayMessages() {
 
     h2Name.textContent = message.name;
     pDate.textContent = message.date;
-    pMessage.textContent = message.message;
-    deletePost.textContent = "X";
+    pMessage.textContent = `${message.name} said "${message.message}"`;
+    deletePost.textContent = "Delete Post";
 
-    messageBoard.appendChild(h2Name);
-    messageBoard.appendChild(pDate);
-    messageBoard.appendChild(pMessage);
+    borderDiv.appendChild(h2Name);
+    borderDiv.appendChild(pDate);
+    borderDiv.appendChild(pMessage);
+
+    messageBoard.appendChild(borderDiv);
     messageBoard.appendChild(deletePost);
 
     deletePost.addEventListener("click", (e) => {
@@ -56,8 +71,6 @@ async function displayMessages() {
     });
   });
 }
-
-displayMessages();
 
 async function handleDelete(id) {
   const result = await fetch(`${defaultURL}/messages/${id}`, {
