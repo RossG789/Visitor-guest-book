@@ -23,15 +23,25 @@ app.get("/messages", (req, res) => {
       return;
     }
 
-    // add variable for ordering before sql query
-    // eg let ordering = ASC
+    let ordering = req.query.sort === "oldest" ? "ASC" : "DESC";
 
-    // if(req.query.sortby = latest
-    // req.query.sortbylatest/oldest
+    // let ordering = "DESC";
 
-    let message = db.prepare(`SELECT * FROM messages`).all();
-
+    // if (req.query.sort === "oldest") {
+    //   ordering = "ASC";
+    // }
+    let message = db
+      .prepare(`SELECT * FROM messages ORDER BY id ${ordering}`)
+      .all();
     res.status(200).json(message);
+
+    // if (req.query.sort === "oldest") {
+    //   let message = db.prepare(`SELECT * FROM messages ORDER BY id ASC`).all();
+    //   res.status(200).json(message);
+    // } else {
+    //   let message = db.prepare(`SELECT * FROM messages ORDER BY id DESC`).all();
+    //   res.status(200).json(message);
+    // }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -40,12 +50,14 @@ app.get("/messages", (req, res) => {
 app.post("/messages", (req, res) => {
   try {
     const name = req.body.name;
-    const date = req.body.date;
+
     const userMessage = req.body.message;
 
     const newMessage = db
-      .prepare(`INSERT INTO messages (name, date, message) VALUES (?, ?, ?)`)
-      .run(name, date, userMessage);
+      .prepare(
+        `INSERT INTO messages (name, date, message) VALUES (?, DATE('now'), ?)`
+      )
+      .run(name, userMessage);
     res.status(200).json(newMessage);
   } catch (err) {
     res.status(500).json(err);
