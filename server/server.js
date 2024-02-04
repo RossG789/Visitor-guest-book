@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = "https://leaky-cauldron.onrender.com";
+const PORT = "1111";
 
 app.get("/", (req, res) => {
   res.send("H-...Hiiii	ԅ(≖‿≖ԅ)");
@@ -92,4 +92,4 @@ app.put("/messages/:id", (req, res) => {
   } catch (err) {}
 });
 
-app.listen(PORT, () => console.log(`H-...Hiiii	ԅ(≖‿≖ԅ) @ ${PORT}`));
+app.listen(PORT, () => console.log(`H-...Hiiii	ԅ(≖‿≖ԅ) @ localhost:${PORT}`));
