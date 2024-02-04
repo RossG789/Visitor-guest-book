@@ -28,7 +28,7 @@
 }
 
 .radio-btn {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .form-container {
@@ -54,6 +54,10 @@
 
 .message-field {
   margin-left: 10px;
+}
+
+.message-field p {
+  font-size: 1.4rem;
 }
 
 .logo {

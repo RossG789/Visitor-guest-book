@@ -19,6 +19,11 @@ form.addEventListener("submit", async (e) => {
 
   const formData = new FormData(form);
   const messageData = Object.fromEntries(formData);
+  console.log(messageData);
+
+  if (messageData.name === "" || messageData.message === "") {
+    return;
+  }
 
   const response = await fetch(`${defaultURL}/messages`, {
     method: "POST",
@@ -64,6 +69,8 @@ async function displayMessages(order = "newest") {
 
     messageBoard.appendChild(borderDiv);
     messageBoard.appendChild(deletePost);
+
+    form.reset();
 
     deletePost.addEventListener("click", (e) => {
       e.preventDefault();
